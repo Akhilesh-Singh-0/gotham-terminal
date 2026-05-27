@@ -1,0 +1,23 @@
+export interface Project {
+    id:          string
+    title:       string
+    codename:    string
+    description: string
+    tags:        string[]
+    year:        string
+    status:      'active' | 'archived' | 'classified'
+    url?:        string
+    github?:     string
+}
+  
+export interface Skill {
+    name:     string
+    category: 'frontend' | 'backend' | 'infrastructure' | 'tools'
+    level: number
+}
+  
+export interface NavItem {
+    label: string
+    href:  string
+    index: string
+}
