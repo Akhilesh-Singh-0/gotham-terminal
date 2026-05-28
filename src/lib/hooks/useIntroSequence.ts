@@ -8,17 +8,11 @@ export type IntroPhase =
   | 'boot'
   | 'complete'
 
-
 export function useIntroSequence() {
   const [phase, setPhase] = useState<IntroPhase>('idle')
 
   useEffect(() => {
-    
-    if (sessionStorage.getItem('intro-seen')) {
-      setPhase('complete')
-      return
-    }
-
+    // DEV: session check disabled so intro always plays
     const sequence: { phase: IntroPhase; duration: number }[] = [
       { phase: 'rain',   duration: 2000 },
       { phase: 'bats',   duration: 2500 },
@@ -35,14 +29,10 @@ export function useIntroSequence() {
 
     setTimeout(() => {
       setPhase('complete')
-      sessionStorage.setItem('intro-seen', 'true')
     }, elapsed + 1000)
   }, [])
 
-  const skip = () => {
-    setPhase('complete')
-    sessionStorage.setItem('intro-seen', 'true')
-  }
+  const skip = () => setPhase('complete')
 
   return { phase, skip }
 }
