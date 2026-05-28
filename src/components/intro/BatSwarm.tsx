@@ -1,12 +1,12 @@
 'use client'
 
 interface Bat {
-  id: number
-  size: number
-  top: string
+  id:       number
+  size:     number
+  top:      string
   duration: number
-  delay: number
-  opacity: number
+  delay:    number
+  opacity:  number
 }
 
 const BATS: Bat[] = [
@@ -31,8 +31,7 @@ function BatShape({ size }: { size: number }) {
     >
       <path
         d="M20 20C20 20 8 16 4 9C7 11 10 10 12 8C12 8 9 4 11 1C13 5 15 6 20 6C25 6 27 5 29 1C31 4 28 8 28 8C30 10 33 11 36 9C32 16 20 20 20 20Z"
-        fill="#c9a84c"
-        opacity="0.85"
+        fill="var(--c-crimson)"
       />
     </svg>
   )
@@ -46,8 +45,8 @@ export default function BatSwarm() {
           key={bat.id}
           className="absolute"
           style={{
-            top: bat.top,
-            opacity: bat.opacity,
+            top:       bat.top,
+            opacity:   bat.opacity,
             animation: `batFly ${bat.duration}s linear ${bat.delay}s infinite`,
           }}
         >
@@ -57,10 +56,10 @@ export default function BatSwarm() {
 
       <style jsx>{`
         @keyframes batFly {
-          0%   { transform: translateX(-60px) scaleX(1); }
-          49%  { transform: translateX(110vw) scaleX(1); }
-          50%  { transform: translateX(110vw) scaleX(-1); }
-          100% { transform: translateX(-60px) scaleX(-1); }
+          0%   { transform: translateX(-60px) scaleX(1);   }
+          49%  { transform: translateX(110vw)  scaleX(1);  }
+          50%  { transform: translateX(110vw)  scaleX(-1); }
+          100% { transform: translateX(-60px)  scaleX(-1); }
         }
       `}</style>
     </div>
