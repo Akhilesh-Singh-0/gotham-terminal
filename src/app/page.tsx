@@ -5,6 +5,7 @@ import { useLenis } from '@/lib/hooks/useLenis'
 import { cn } from '@/lib/utils'
 import IntroSequence from '@/components/intro/IntroSequence'
 import HeroSection from '@/components/hero/HeroSection'
+import Navigation from '@/components/layout/Navigation'
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false)
@@ -20,12 +21,13 @@ export default function Home() {
       {!introComplete && (
         <IntroSequence onComplete={handleIntroComplete} />
       )}
-
+      {introComplete && <Navigation />}
       <main className={cn(
         'transition-opacity duration-1000',
         introComplete ? 'opacity-100' : 'opacity-0'
       )}>
-      <HeroSection />
+        <HeroSection />
+        <div style={{ height: '200vh', background: 'var(--c-charcoal)' }} />
       </main>
     </>
   )
