@@ -3,51 +3,43 @@
 @tailwind utilities;
 
 :root {
-  
-  --c-black:        #08080a;
-  --c-deep:         #0d0d10;
-  --c-charcoal:     #131316;
-  --c-slate:        #1a1a1f;
-  --c-smoke:        #222228;
-  --c-gunmetal:     #2b2b33;
-  --c-dim:          #3a3a44;
-  --c-mist:         #4f4f5a;
-  --c-ash:          #6a6a76;
-  --c-silver:       #8c8c98;
-  --c-fog:          #b2b2bc;
-  --c-ghost:        #d0d0d8;
-
-  --c-crimson:      #8b1a1a;
+  --c-black: #08080a;
+  --c-deep: #0d0d10;
+  --c-charcoal: #131316;
+  --c-slate: #1a1a1f;
+  --c-smoke: #222228;
+  --c-gunmetal: #2b2b33;
+  --c-dim: #3a3a44;
+  --c-mist: #4f4f5a;
+  --c-ash: #6a6a76;
+  --c-silver: #8c8c98;
+  --c-fog: #b2b2bc;
+  --c-ghost: #d0d0d8;
+  --c-crimson: #8b1a1a;
   --c-crimson-dark: #570f0f;
-  --c-crimson-lit:  #c42828;
-
-  --c-gold:         #c9a84c;
-  --c-gold-dark:    #8a7532;
-  --c-gold-pale:    #e8d49c;
-  --c-gold-glow:    #f0c058;
-
+  --c-crimson-lit: #c42828;
+  --c-gold: #c9a84c;
+  --c-gold-dark: #8a7532;
+  --c-gold-pale: #e8d49c;
+  --c-gold-glow: #f0c058;
   --font-display: 'Bebas Neue', system-ui, sans-serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
-  --font-mono:    'DM Mono', monospace;
-
-  --fs-xs:   0.6875rem;
-  --fs-sm:   0.8125rem;
-  --fs-md:   1rem;
-  --fs-lg:   1.125rem;
-  --fs-xl:   1.375rem;
-
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --fs-xs: 0.6875rem;
+  --fs-sm: 0.8125rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.125rem;
+  --fs-xl: 1.375rem;
   --space-section: clamp(5rem, 10vw, 9rem);
-
-  --ease-expo:      cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-cinematic: cubic-bezier(0.77, 0, 0.175, 1);
-  --ease-soft:      cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
-  --z-base:    0;
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --z-base: 0;
   --z-content: 10;
   --z-overlay: 20;
-  --z-nav:     30;
-  --z-intro:   40;
-  --z-cursor:  50;
+  --z-nav: 30;
+  --z-intro: 40;
+  --z-cursor: 50;
 }
 
 @layer base {
@@ -77,18 +69,17 @@
   }
 
   ::selection {
-    background: var(--c-gold);
-    color: var(--c-black);
+    background: var(--c-crimson);
+    color: var(--c-ghost);
   }
 
-  ::-webkit-scrollbar       { width: 4px; }
+  ::-webkit-scrollbar { width: 4px; }
   ::-webkit-scrollbar-track { background: var(--c-black); }
   ::-webkit-scrollbar-thumb { background: var(--c-dim); border-radius: 2px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--c-gold-dark); }
+  ::-webkit-scrollbar-thumb:hover { background: var(--c-crimson-dark); }
 }
 
 @layer components {
-
   .heading-display {
     font-family: var(--font-display);
     text-transform: uppercase;
@@ -102,7 +93,7 @@
     font-size: var(--fs-xs);
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--c-gold);
+    color: var(--c-crimson-lit);
   }
 
   .tag-section {
@@ -121,8 +112,8 @@
     font-size: var(--fs-xs);
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--c-gold);
-    border: 1px solid var(--c-gold-dark);
+    color: var(--c-crimson-lit);
+    border: 1px solid var(--c-crimson);
     padding: 0.75rem 1.75rem;
     background: transparent;
     clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
@@ -131,8 +122,8 @@
   }
 
   .btn-tactical:hover {
-    background: var(--c-gold);
-    color: var(--c-black);
+    background: var(--c-crimson);
+    color: var(--c-ghost);
   }
 
   .btn-ghost {
@@ -165,13 +156,6 @@
     padding-bottom: var(--space-section);
   }
 
-  .rule-gold {
-    display: inline-block;
-    height: 1px;
-    background: var(--c-gold-dark);
-    flex-shrink: 0;
-  }
-
   .rule-crimson {
     display: inline-block;
     height: 1px;
@@ -180,8 +164,8 @@
     flex-shrink: 0;
   }
 
-  .text-gradient-gold {
-    background: linear-gradient(135deg, var(--c-gold) 0%, var(--c-gold-pale) 50%, var(--c-gold) 100%);
+  .text-gradient-crimson {
+    background: linear-gradient(135deg, var(--c-crimson) 0%, var(--c-crimson-lit) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -205,39 +189,39 @@
 
 @keyframes flicker {
   0%, 100% { opacity: 1; }
-  45%       { opacity: 1; }
-  50%       { opacity: 0; }
-  55%       { opacity: 0; }
-  60%       { opacity: 1; }
+  45% { opacity: 1; }
+  50% { opacity: 0; }
+  55% { opacity: 0; }
+  60% { opacity: 1; }
 }
 
 @keyframes signal-pulse {
   0%, 100% { opacity: 0.5; }
-  50%       { opacity: 1;   }
+  50% { opacity: 1; }
 }
 
 @keyframes fog-drift {
-  0%   { transform: translateX(-8px); }
-  50%  { transform: translateX(8px);  }
+  0% { transform: translateX(-8px); }
+  50% { transform: translateX(8px); }
   100% { transform: translateX(-8px); }
 }
 
 @keyframes blink-dot {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  50% { opacity: 0; }
 }
 
 @keyframes scan-line {
-  0%   { top: -2px;            }
-  100% { top: calc(100% + 2px);}
+  0% { top: -2px; }
+  100% { top: calc(100% + 2px); }
 }
 
 @layer utilities {
-  .animate-flicker       { animation: flicker 1.1s step-end infinite; }
-  .animate-signal-pulse  { animation: signal-pulse 3.5s ease-in-out infinite; }
-  .animate-fog-drift     { animation: fog-drift 9s ease-in-out infinite; }
-  .animate-blink         { animation: blink-dot 1.2s step-end infinite; }
-  .animate-scan-line     { animation: scan-line 3s linear infinite; }
+  .animate-flicker { animation: flicker 1.1s step-end infinite; }
+  .animate-signal-pulse { animation: signal-pulse 3.5s ease-in-out infinite; }
+  .animate-fog-drift { animation: fog-drift 9s ease-in-out infinite; }
+  .animate-blink { animation: blink-dot 1.2s step-end infinite; }
+  .animate-scan-line { animation: scan-line 3s linear infinite; }
 }
 
 @media (prefers-reduced-motion: reduce) {
