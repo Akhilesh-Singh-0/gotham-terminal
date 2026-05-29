@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils'
 import IntroSequence from '@/components/intro/IntroSequence'
 import HeroSection from '@/components/hero/HeroSection'
 import Navigation from '@/components/layout/Navigation'
+import AboutSection from '@/components/about/AboutSection'
+import SkillsSection from '@/components/skills/SkillsSection'
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false)
@@ -27,7 +29,9 @@ export default function Home() {
         introComplete ? 'opacity-100' : 'opacity-0'
       )}>
         <HeroSection />
-        <div style={{ height: '200vh', background: 'var(--c-charcoal)' }} />
+        <AboutSection />
+        <SkillsSection />
+        <div style={{ height: '100vh', background: 'var(--c-charcoal)' }} />
       </main>
     </>
   )
