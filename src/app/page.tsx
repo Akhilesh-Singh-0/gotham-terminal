@@ -8,7 +8,10 @@ import HeroSection from '@/components/hero/HeroSection'
 import Navigation from '@/components/layout/Navigation'
 import AboutSection from '@/components/about/AboutSection'
 import SkillsSection from '@/components/skills/SkillsSection'
+import ProjectsSection from '@/components/projects/ProjectsSection'
+import ContactSection from '@/components/contact/ContactSection'
 import CommandPalette from '@/components/ui/CommandPalette'
+import Footer from '@/components/layout/Footer'
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false)
@@ -33,7 +36,9 @@ export default function Home() {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
-        <div style={{ height: '100vh', background: 'var(--c-charcoal)' }} />
+        <ProjectsSection />
+        <ContactSection />
+        <Footer />
       </main>
     </>
   )
