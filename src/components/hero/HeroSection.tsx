@@ -73,10 +73,15 @@ export default function HeroSection() {
         <div className="h-16 w-px" style={{ background: 'linear-gradient(to top, transparent, var(--c-dim))' }} />
       </div>
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 w-full">
-        <div className={cn('mb-10 transition-all duration-700', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
-          <Logo size={36} />
-        </div>
-        <div className={cn('flex items-center gap-3 mb-8 transition-all duration-700 delay-100', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+      <div className={cn('mb-10 transition-all duration-700', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+      <Logo size={36} />
+      </div>
+      <div className={cn('mb-4 transition-all duration-700 delay-[50ms]', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.22em', color: 'var(--c-crimson-lit)' }}>
+      {IDENTITY.name.toUpperCase()}
+      </span>
+      </div>
+      <div className={cn('flex items-center gap-3 mb-8 transition-all duration-700 delay-100', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
           <span className="w-1.5 h-1.5 rounded-full animate-blink" style={{ background: 'var(--c-crimson-lit)' }} />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.18em', color: 'var(--c-fog)' }}>
             {IDENTITY.role.toUpperCase()}
