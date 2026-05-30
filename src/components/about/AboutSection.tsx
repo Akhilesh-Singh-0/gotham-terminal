@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from "react"
 import { IDENTITY } from "@/lib/constants"
+import { useReveal } from '@/lib/hooks/useReveal'
 
 const FIELDS = [
   { label: "DESIGNATION", value: IDENTITY.name },
@@ -24,17 +24,9 @@ const METRICS = [
 ]
 
 export default function AboutSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [revealed, setRevealed] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setRevealed(true) },
-      { threshold: 0.2 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
+  const { ref: sectionRef, revealed } = useReveal({
+    threshold: 0.2,
+  })
 
   return (
     <section ref={sectionRef} id="about" className="relative section-padding overflow-hidden" style={{ background: "var(--c-charcoal)" }}>
@@ -68,9 +60,15 @@ export default function AboutSection() {
             </div>
           </div>
           <div style={{ transition: "all 0.7s 0.2s", opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(2rem)" }}>
-            <h2 className="heading-display mb-6" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", color: "var(--c-ghost)" }}>SYSTEMS THINKER.</h2>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--fs-md)", color: "var(--c-silver)", lineHeight: "1.8", marginBottom: "1.5rem" }}>{IDENTITY.shortIntro}</p>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--fs-md)", color: "var(--c-ash)", lineHeight: "1.8", marginBottom: "2rem" }}>Currently pursuing B.Tech in Mechanical Engineering at MITS Gwalior, building production-grade backend systems on the side.</p>
+          <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
+          THE ENGINEER BEHIND THE SYSTEMS.
+          </h2>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+          I started with web development but became more interested in what happened after a request left the browser. That curiosity led me into distributed systems, queues, caching, real-time communication, and backend architecture.
+          </p>
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-ash)', lineHeight: '1.8', marginBottom: '2rem' }}>
+          Currently pursuing B.Tech in Mechanical Engineering at MITS Gwalior building production grade backend systems on the side. Meta Back-End Developer certified. PostgreSQL specialist.
+          </p>
             <div className="grid grid-cols-2 gap-4">
               {METRICS.map(({ value, label }) => (
                 <div key={label} className="p-4" style={{ border: "1px solid var(--c-dim)", background: "rgba(8,8,10,0.5)" }}>
