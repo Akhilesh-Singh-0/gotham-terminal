@@ -5,6 +5,97 @@ import { IDENTITY } from '@/lib/constants'
 import Logo from '@/components/ui/Logo'
 import { cn } from '@/lib/utils'
 
+function ScanLine() {
+  const [active, setActive] = useState(false)
+  const [top, setTop] = useState(-2)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    const run = () => {
+      setTop(-2)
+      setActive(true)
+
+      const start = performance.now()
+      const duration = 2200
+
+      const animate = (now: number) => {
+        const progress = Math.min((now - start) / duration, 1)
+        setTop(progress * 102)
+        if (progress < 1) requestAnimationFrame(animate)
+        else setActive(false)
+      }
+
+      requestAnimationFrame(animate)
+    }
+
+    const first = setTimeout(run, 4000)
+    const interval = setInterval(run, 18000)
+    return () => { clearTimeout(first); clearInterval(interval) }
+  }, [])
+
+  if (!active) return null
+
+  return (
+    <div
+      className="absolute inset-x-0 pointer-events-none"
+      style={{
+        top: `${top}%`,
+        height: '1px',
+        background: 'linear-gradient(to right, transparent, rgba(139,26,26,0.35), transparent)',
+        zIndex: 5,
+      }}
+    />
+  )
+}
+
+function TacticalButton({
+  label,
+  hoverLabel,
+  onClick,
+  variant,
+}: {
+  label: string
+  hoverLabel: string
+  onClick: () => void
+  variant: 'primary' | 'ghost'
+}) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <button
+      className={variant === 'primary' ? 'btn-tactical' : 'btn-ghost'}
+      onClick={onClick}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ minWidth: '160px' }}
+    >
+      <span
+        style={{
+          display: 'block',
+          transition: 'opacity 0.15s, transform 0.15s',
+          opacity: hovered ? 0 : 1,
+          transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+          position: hovered ? 'absolute' : 'relative',
+        }}
+      >
+        {label}
+      </span>
+      <span
+        style={{
+          display: 'block',
+          transition: 'opacity 0.15s, transform 0.15s',
+          opacity: hovered ? 1 : 0,
+          transform: hovered ? 'translateY(0)' : 'translateY(4px)',
+          position: hovered ? 'relative' : 'absolute',
+        }}
+      >
+        {hoverLabel}
+      </span>
+    </button>
+  )
+}
+
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const spotlightRef = useRef<HTMLDivElement>(null)
@@ -54,6 +145,9 @@ export default function HeroSection() {
         className="absolute inset-0 pointer-events-none opacity-[0.02]"
         style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 79px, rgba(255,255,255,0.5) 79px, rgba(255,255,255,0.5) 80px)' }}
       />
+
+      <ScanLine />
+
       <div className="absolute top-8 left-8 w-8 h-8 border-t border-l pointer-events-none" style={{ borderColor: 'var(--c-dim)' }} />
       <div className="absolute top-8 right-8 w-8 h-8 border-t border-r pointer-events-none" style={{ borderColor: 'var(--c-dim)' }} />
       <div className="absolute bottom-8 left-8 w-8 h-8 border-b border-l pointer-events-none" style={{ borderColor: 'var(--c-dim)' }} />
@@ -72,16 +166,17 @@ export default function HeroSection() {
         </span>
         <div className="h-16 w-px" style={{ background: 'linear-gradient(to top, transparent, var(--c-dim))' }} />
       </div>
+
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 w-full">
-      <div className={cn('mb-10 transition-all duration-700', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
-      <Logo size={36} />
-      </div>
-      <div className={cn('mb-4 transition-all duration-700 delay-[50ms]', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
-      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.22em', color: 'var(--c-crimson-lit)' }}>
-      {IDENTITY.name.toUpperCase()}
-      </span>
-      </div>
-      <div className={cn('flex items-center gap-3 mb-8 transition-all duration-700 delay-100', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+        <div className={cn('mb-10 transition-all duration-700', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+          <Logo size={36} />
+        </div>
+        <div className={cn('mb-4 transition-all duration-700 delay-[50ms]', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.22em', color: 'var(--c-crimson-lit)' }}>
+            {IDENTITY.name.toUpperCase()}
+          </span>
+        </div>
+        <div className={cn('flex items-center gap-3 mb-8 transition-all duration-700 delay-100', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
           <span className="w-1.5 h-1.5 rounded-full animate-blink" style={{ background: 'var(--c-crimson-lit)' }} />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.18em', color: 'var(--c-fog)' }}>
             {IDENTITY.role.toUpperCase()}
@@ -128,12 +223,18 @@ export default function HeroSection() {
           {IDENTITY.subheadline}
         </p>
         <div className={cn('flex flex-col sm:flex-row items-start gap-4 mb-16 transition-all duration-700 delay-500', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}>
-          <button className="btn-tactical" onClick={() => scrollTo('#projects')}>
-            {IDENTITY.ctaPrimary}
-          </button>
-          <button className="btn-ghost" onClick={() => scrollTo('#contact')}>
-            {IDENTITY.ctaSecondary}
-          </button>
+          <TacticalButton
+            label={IDENTITY.ctaPrimary}
+            hoverLabel="ACCESS PROJECTS"
+            onClick={() => scrollTo('#projects')}
+            variant="primary"
+          />
+          <TacticalButton
+            label={IDENTITY.ctaSecondary}
+            hoverLabel="OPEN CHANNEL"
+            onClick={() => scrollTo('#contact')}
+            variant="ghost"
+          />
         </div>
         <div
           className={cn('flex flex-wrap gap-8 pt-8 transition-all duration-700 delay-[600ms]', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4')}
