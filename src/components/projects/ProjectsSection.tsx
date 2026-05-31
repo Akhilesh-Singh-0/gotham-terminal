@@ -38,7 +38,40 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
       {expanded && (
         <div className="px-6 pb-6" style={{ borderTop: '1px solid var(--c-dim)' }}>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', margin: '1.5rem 0' }}>
+
+          {/* Metrics panel */}
+          {project.metrics && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
+              {project.metrics.throughput && (
+                <div className="p-3" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.14em', marginBottom: '4px' }}>THROUGHPUT</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--c-ghost)' }}>{project.metrics.throughput}</div>
+                </div>
+              )}
+              {project.metrics.latency && (
+                <div className="p-3" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.14em', marginBottom: '4px' }}>LATENCY</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--c-ghost)' }}>{project.metrics.latency}</div>
+                </div>
+              )}
+              {project.metrics.errorRate && (
+                <div className="p-3" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.14em', marginBottom: '4px' }}>ERROR RATE</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color: 'var(--c-ghost)' }}>{project.metrics.errorRate}</div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Architecture */}
+          {project.metrics?.architecture && (
+            <div className="mb-6 p-4" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-crimson-lit)', letterSpacing: '0.14em', marginBottom: '8px' }}>ARCHITECTURE</div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', letterSpacing: '0.08em' }}>{project.metrics.architecture}</div>
+            </div>
+          )}
+
+          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
             {project.description}
           </p>
           <div className="flex flex-wrap gap-2 mb-6">

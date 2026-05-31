@@ -4,7 +4,7 @@ export const IDENTITY = {
   name: 'Akhilesh Singh',
   handle: '@singh_akhil2272',
   role: 'Backend & Systems Engineer',
-  location: 'Rewa, India',
+  location: 'Gwalior, India',
   email: 'singhakhilesh19468@gmail.com',
   github: 'https://github.com/Akhilesh-Singh-0',
   linkedin: 'https://linkedin.com/in/akhilesh-singh-dev',
@@ -13,7 +13,7 @@ export const IDENTITY = {
   subheadline: 'I build production-focused backend systems with Node.js, TypeScript, PostgreSQL, Redis, BullMQ, and WebSockets — focused on scalability, concurrency, reliability, and clean architecture.',
   tagline: 'Built for scale, latency, and reliability.',
   shortIntro: 'My work focuses on distributed systems, async processing, real-time architectures, and API infrastructure. I enjoy solving engineering problems around concurrency, performance, fault tolerance, and system design.',
-  availability: 'Open to backend engineering internships, remote roles, and systems-focused opportunities.',
+  availability: 'Open to opportunities',
   ctaPrimary: 'View Projects',
   ctaSecondary: 'Contact Me',
   stats: [
@@ -42,6 +42,12 @@ export const PROJECTS: Project[] = [
     status: 'active',
     url: 'https://guardrail.live',
     github: 'https://github.com/Akhilesh-Singh-0',
+    metrics: {
+      throughput: '134 req/s',
+      latency: '<50ms',
+      errorRate: '0%',
+      architecture: 'Client → Proxy → Redis → Provider → BullMQ → PostgreSQL',
+    },
   },
   {
     id: 'flowspace',
@@ -53,6 +59,12 @@ export const PROJECTS: Project[] = [
     status: 'active',
     url: 'https://flowspace.live',
     github: 'https://github.com/Akhilesh-Singh-0',
+    metrics: {
+      throughput: '150 req/s',
+      latency: '359ms p95',
+      errorRate: '0%',
+      architecture: 'REST API → Redis Pub/Sub → WebSocket → BullMQ Workers',
+    },
   },
   {
     id: 'luminary',
@@ -63,6 +75,9 @@ export const PROJECTS: Project[] = [
     year: '2025',
     status: 'active',
     github: 'https://github.com/Akhilesh-Singh-0',
+    metrics: {
+      architecture: 'Next.js → PostgreSQL → Prisma ORM',
+    },
   },
 ]
 

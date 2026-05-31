@@ -1,3 +1,10 @@
+export interface ProjectMetrics {
+    throughput?:   string
+    latency?:      string
+    errorRate?:    string
+    architecture?: string
+}
+  
 export interface Project {
     id:          string
     title:       string
@@ -8,12 +15,13 @@ export interface Project {
     status:      'active' | 'archived' | 'classified'
     url?:        string
     github?:     string
+    metrics?:    ProjectMetrics
 }
   
 export interface Skill {
     name:     string
     category: 'frontend' | 'backend' | 'infrastructure' | 'tools'
-    level: number
+    level:    number
 }
   
 export interface NavItem {
