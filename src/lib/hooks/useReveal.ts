@@ -8,21 +8,18 @@ export function useReveal() {
     const el = ref.current
     if (!el) return
 
-    const timer = setTimeout(() => {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setRevealed(true)
-            observer.disconnect()
-          }
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -150px 0px' }
-      )
-      observer.observe(el)
-      return () => observer.disconnect()
-    }, 100)
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setRevealed(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0, rootMargin: '0px 0px -200px 0px' }
+    )
 
-    return () => clearTimeout(timer)
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   return { ref, revealed }
