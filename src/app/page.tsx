@@ -12,6 +12,7 @@ import ProjectsSection from '@/components/projects/ProjectsSection'
 import ContactSection from '@/components/contact/ContactSection'
 import CommandPalette from '@/components/ui/CommandPalette'
 import Footer from '@/components/layout/Footer'
+import SystemLog from '@/components/ui/SystemLog'
 
 export default function Home() {
   const [introComplete, setIntroComplete] = useState(false)
@@ -29,6 +30,7 @@ export default function Home() {
       )}
       {introComplete && <Navigation />}
       {introComplete && <CommandPalette />}
+      {introComplete && <SystemLog />}
       <main className={cn(
         'transition-opacity duration-1000',
         introComplete ? 'opacity-100' : 'opacity-0'
