@@ -1,45 +1,35 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { useReveal } from '@/lib/hooks/useReveal'
 import { SKILLS } from '@/lib/constants'
 
 const SKILL_PROJECTS: Record<string, string[]> = {
-  'Node.js':     ['Guardrail', 'FlowSpace', 'Luminary'],
-  'TypeScript':  ['Guardrail', 'FlowSpace', 'Luminary'],
-  'PostgreSQL':  ['Guardrail', 'FlowSpace', 'Luminary'],
-  'Redis':       ['Guardrail', 'FlowSpace'],
-  'WebSockets':  ['Guardrail', 'FlowSpace'],
-  'BullMQ':      ['Guardrail', 'FlowSpace'],
-  'Prisma':      ['FlowSpace', 'Luminary'],
-  'Next.js':     ['Guardrail', 'FlowSpace', 'Luminary'],
-  'React':       ['Guardrail', 'FlowSpace', 'Luminary'],
-  'Docker':      ['Guardrail', 'FlowSpace'],
-  'Turborepo':   ['Guardrail', 'FlowSpace'],
-  'Vercel':      ['Luminary'],
+  'Node.js':    ['Guardrail', 'FlowSpace', 'Luminary'],
+  'TypeScript': ['Guardrail', 'FlowSpace', 'Luminary'],
+  'PostgreSQL': ['Guardrail', 'FlowSpace', 'Luminary'],
+  'Redis':      ['Guardrail', 'FlowSpace'],
+  'WebSockets': ['Guardrail', 'FlowSpace'],
+  'BullMQ':     ['Guardrail', 'FlowSpace'],
+  'Prisma':     ['FlowSpace', 'Luminary'],
+  'Next.js':    ['Guardrail', 'FlowSpace', 'Luminary'],
+  'React':      ['Guardrail', 'FlowSpace', 'Luminary'],
+  'Docker':     ['Guardrail', 'FlowSpace'],
+  'Turborepo':  ['Guardrail', 'FlowSpace'],
+  'Vercel':     ['Luminary'],
 }
 
 const CATEGORIES = ['backend', 'frontend', 'infrastructure'] as const
 
 export default function SkillsSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [revealed, setRevealed]   = useState(false)
-  const [active, setActive]       = useState<string>('backend')
-  const [hovered, setHovered]     = useState<string | null>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setRevealed(true) },
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
+  const { ref, revealed } = useReveal()
+  const [active, setActive]   = useState<string>('backend')
+  const [hovered, setHovered] = useState<string | null>(null)
 
   const filtered = SKILLS.filter(s => s.category === active)
 
   return (
     <section
-      ref={sectionRef}
       id="skills"
       className="relative section-padding overflow-hidden"
       style={{ background: 'var(--c-black)' }}
@@ -48,7 +38,7 @@ export default function SkillsSection() {
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'radial-gradient(ellipse 60% 40% at 30% 50%, rgba(139,26,26,0.04) 0%, transparent 70%)' }}
       />
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
 
         <div className="flex items-center gap-4 mb-16">
           <span className="rule-crimson" />
@@ -60,7 +50,7 @@ export default function SkillsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
-          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(2rem)', transition: 'all 0.7s' }}>
+          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s var(--ease-expo), transform 1.2s var(--ease-expo)' }}>
             <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
               TECHNICAL ARSENAL.
             </h2>
@@ -98,7 +88,7 @@ export default function SkillsSection() {
             </div>
           </div>
 
-          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(2rem)', transition: 'all 0.7s 0.2s' }}>
+          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s 0.3s var(--ease-expo), transform 1.2s 0.3s var(--ease-expo)' }}>
             <div style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
               <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--c-dim)' }}>
                 <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.14em' }}>MODULE</span>
