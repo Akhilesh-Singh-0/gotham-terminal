@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
+import { useReveal } from '@/lib/hooks/useReveal'
 import { PROJECTS } from '@/lib/constants'
 import type { Project } from '@/types'
 
@@ -38,8 +39,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       </div>
       {expanded && (
         <div className="px-6 pb-6" style={{ borderTop: '1px solid var(--c-dim)' }}>
-
-          {/* Metrics panel */}
           {project.metrics && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 my-6">
               {project.metrics.throughput && (
@@ -62,15 +61,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               )}
             </div>
           )}
-
-          {/* Architecture */}
           {project.metrics?.architecture && (
             <div className="mb-6 p-4" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-crimson-lit)', letterSpacing: '0.14em', marginBottom: '8px' }}>ARCHITECTURE</div>
               <div style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', letterSpacing: '0.08em' }}>{project.metrics.architecture}</div>
             </div>
           )}
-
           <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
             {project.description}
           </p>
@@ -100,22 +96,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [revealed, setRevealed] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) setRevealed(true) },
-      { threshold: 0.1 }
-    )
-    if (sectionRef.current) observer.observe(sectionRef.current)
-    return () => observer.disconnect()
-  }, [])
+  const { ref, revealed } = useReveal()
 
   return (
-    <section ref={sectionRef} id="projects" className="relative section-padding overflow-hidden" style={{ background: 'var(--c-charcoal)' }}>
+    <section id="projects" className="relative section-padding overflow-hidden" style={{ background: 'var(--c-charcoal)' }}>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 80% 50%, rgba(139,26,26,0.04) 0%, transparent 70%)' }} />
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex items-center gap-4 mb-16">
           <span className="rule-crimson" />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.18em', color: 'var(--c-ash)', border: '1px solid var(--c-dim)', padding: '0.25rem 0.625rem', borderRadius: '2px' }}>
@@ -123,7 +109,7 @@ export default function ProjectsSection() {
           </span>
           <span className="rule-crimson" />
         </div>
-        <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(2rem)', transition: 'all 0.7s', marginBottom: '3rem' }}>
+        <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s var(--ease-expo), transform 1.2s var(--ease-expo)', marginBottom: '3rem' }}>
           <h2 className="heading-display mb-4" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
             SELECTED MISSIONS.
           </h2>
@@ -131,7 +117,7 @@ export default function ProjectsSection() {
             Production systems built and deployed. Click any operation to access the classified file.
           </p>
         </div>
-        <div className="flex flex-col gap-4" style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(2rem)', transition: 'all 0.7s 0.2s' }}>
+        <div className="flex flex-col gap-4" style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s 0.3s var(--ease-expo), transform 1.2s 0.3s var(--ease-expo)' }}>
           {PROJECTS.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
