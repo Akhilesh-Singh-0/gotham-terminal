@@ -14,8 +14,29 @@ export default function ContactSection() {
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) return
     setStatus('sending')
-    await new Promise(r => setTimeout(r, 1800))
-    setStatus('sent')
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: '4515dbd1-60fc-429d-bafa-c72087e70b48',
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          subject: `New transmission from ${form.name} — Gotham Terminal`,
+        }),
+      })
+
+      const data = await res.json()
+      if (data.success) {
+        setStatus('sent')
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -67,18 +88,46 @@ export default function ContactSection() {
               <div className="flex flex-col gap-4">
                 <div>
                   <label style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.16em', display: 'block', marginBottom: '6px' }}>DESIGNATION</label>
-                  <input type="text" placeholder="Your name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none' }} />
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                    style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none' }}
+                  />
                 </div>
                 <div>
                   <label style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.16em', display: 'block', marginBottom: '6px' }}>FREQUENCY</label>
-                  <input type="email" placeholder="your@email.com" value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none' }} />
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    value={form.email}
+                    onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                    style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none' }}
+                  />
                 </div>
                 <div>
                   <label style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.16em', display: 'block', marginBottom: '6px' }}>TRANSMISSION</label>
-                  <textarea placeholder="Your message..." rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none', resize: 'none' }} />
+                  <textarea
+                    placeholder="Your message..."
+                    rows={5}
+                    value={form.message}
+                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                    style={{ width: '100%', background: 'rgba(8,8,10,0.8)', border: '1px solid var(--c-dim)', padding: '0.75rem 1rem', fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-fog)', outline: 'none', resize: 'none' }}
+                  />
                 </div>
-                <button onClick={handleSubmit} disabled={status === 'sending'} className="btn-tactical" style={{ opacity: status === 'sending' ? 0.7 : 1, width: '100%' }}>
-                  {status === 'sending' ? 'ENCRYPTING...' : 'SEND TRANSMISSION'}
+                {status === 'error' && (
+                  <p style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-crimson-lit)', letterSpacing: '0.14em' }}>
+                    TRANSMISSION FAILED — TRY AGAIN
+                  </p>
+                )}
+                <button
+                  onClick={handleSubmit}
+                  disabled={status === 'sending'}
+                  className="btn-tactical"
+                  style={{ opacity: status === 'sending' ? 0.7 : 1, width: '100%' }}
+                >
+                  {status === 'sending' ? 'TRANSMITTING...' : 'SEND TRANSMISSION'}
                 </button>
               </div>
             )}
