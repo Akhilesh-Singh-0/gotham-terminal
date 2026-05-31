@@ -24,21 +24,19 @@ const METRICS = [
 ]
 
 export default function AboutSection() {
-  const { ref: sectionRef, revealed } = useReveal({
-    threshold: 0.2,
-  })
+  const { ref, revealed } = useReveal()
 
   return (
-    <section ref={sectionRef} id="about" className="relative section-padding overflow-hidden" style={{ background: "var(--c-charcoal)" }}>
+    <section id="about" className="relative section-padding overflow-hidden" style={{ background: "var(--c-charcoal)" }}>
       <div className="overlay-scan absolute inset-0 pointer-events-none" />
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex items-center gap-4 mb-16">
           <span className="rule-crimson" />
           <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-ash)", border: "1px solid var(--c-dim)", padding: "0.25rem 0.625rem" }}>01 — DOSSIER</span>
           <span className="rule-crimson" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div style={{ transition: "all 0.7s", opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(2rem)" }}>
+          <div style={{ transition: "opacity 1.2s var(--ease-expo), transform 1.2s var(--ease-expo)", opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(3rem)" }}>
             <div className="card-tactical p-8 mb-6" style={{ borderColor: "var(--c-dim)" }}>
               <div className="flex items-center justify-between mb-6 pb-4" style={{ borderBottom: "1px solid var(--c-dim)" }}>
                 <p style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-crimson-lit)", letterSpacing: "0.18em" }}>CLASSIFIED — LEVEL 5</p>
@@ -59,16 +57,16 @@ export default function AboutSection() {
               ))}
             </div>
           </div>
-          <div style={{ transition: "all 0.7s 0.2s", opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(2rem)" }}>
-          <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
-          THE ENGINEER BEHIND THE SYSTEMS.
-          </h2>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-          I started with web development but became more interested in what happened after a request left the browser. That curiosity led me into distributed systems, queues, caching, real-time communication, and backend architecture.
-          </p>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-ash)', lineHeight: '1.8', marginBottom: '2rem' }}>
-          Currently pursuing B.Tech in Mechanical Engineering at MITS Gwalior building production grade backend systems on the side. Meta Back-End Developer certified. PostgreSQL specialist.
-          </p>
+          <div style={{ transition: "opacity 1.2s 0.3s var(--ease-expo), transform 1.2s 0.3s var(--ease-expo)", opacity: revealed ? 1 : 0, transform: revealed ? "translateY(0)" : "translateY(3rem)" }}>
+            <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
+              THE ENGINEER BEHIND THE SYSTEMS.
+            </h2>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
+              I started with web development but became more interested in what happened after a request left the browser. That curiosity led me into distributed systems, queues, caching, real-time communication, and backend architecture.
+            </p>
+            <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-ash)', lineHeight: '1.8', marginBottom: '2rem' }}>
+              Currently pursuing B.Tech in Mechanical Engineering at MITS Gwalior building production grade backend systems on the side. Meta Back-End Developer certified. PostgreSQL specialist.
+            </p>
             <div className="grid grid-cols-2 gap-4">
               {METRICS.map(({ value, label }) => (
                 <div key={label} className="p-4" style={{ border: "1px solid var(--c-dim)", background: "rgba(8,8,10,0.5)" }}>
