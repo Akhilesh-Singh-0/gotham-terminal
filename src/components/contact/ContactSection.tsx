@@ -1,11 +1,13 @@
 'use client'
 
 import { useState } from 'react'
+import { useReveal } from '@/lib/hooks/useReveal'
 import { IDENTITY } from '@/lib/constants'
 
 type FormState = 'idle' | 'sending' | 'sent' | 'error'
 
 export default function ContactSection() {
+  const { ref, revealed } = useReveal()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<FormState>('idle')
 
@@ -19,7 +21,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="relative section-padding overflow-hidden" style={{ background: 'var(--c-black)' }}>
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 50% 40% at 30% 50%, rgba(139,26,26,0.05) 0%, transparent 70%)' }} />
-      <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-6 md:px-10">
         <div className="flex items-center gap-4 mb-16">
           <span className="rule-crimson" />
           <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', letterSpacing: '0.18em', color: 'var(--c-ash)', border: '1px solid var(--c-dim)', padding: '0.25rem 0.625rem', borderRadius: '2px' }}>
@@ -28,7 +30,7 @@ export default function ContactSection() {
           <span className="rule-crimson" />
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          <div>
+          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s var(--ease-expo), transform 1.2s var(--ease-expo)' }}>
             <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
               OPEN A CHANNEL.
             </h2>
@@ -50,7 +52,7 @@ export default function ContactSection() {
               </a>
             </div>
           </div>
-          <div>
+          <div style={{ opacity: revealed ? 1 : 0, transform: revealed ? 'translateY(0)' : 'translateY(3rem)', transition: 'opacity 1.2s 0.3s var(--ease-expo), transform 1.2s 0.3s var(--ease-expo)' }}>
             {status === 'sent' ? (
               <div className="p-8 flex flex-col items-center justify-center text-center" style={{ border: '1px solid var(--c-crimson)', minHeight: '400px' }}>
                 <div className="w-2 h-2 rounded-full animate-blink mb-6" style={{ background: 'var(--c-crimson-lit)' }} />
