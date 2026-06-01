@@ -15,17 +15,14 @@ function ScanLine() {
     const run = () => {
       setTop(-2)
       setActive(true)
-
       const start = performance.now()
       const duration = 2200
-
       const animate = (now: number) => {
         const progress = Math.min((now - start) / duration, 1)
         setTop(progress * 102)
         if (progress < 1) requestAnimationFrame(animate)
         else setActive(false)
       }
-
       requestAnimationFrame(animate)
     }
 
@@ -68,7 +65,7 @@ function TacticalButton({
       onClick={onClick}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ minWidth: '160px' }}
+      style={{ minWidth: '160px', position: 'relative' }}
     >
       <span
         style={{
@@ -76,18 +73,20 @@ function TacticalButton({
           transition: 'opacity 0.15s, transform 0.15s',
           opacity: hovered ? 0 : 1,
           transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-          position: hovered ? 'absolute' : 'relative',
         }}
       >
         {label}
       </span>
       <span
         style={{
-          display: 'block',
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           transition: 'opacity 0.15s, transform 0.15s',
           opacity: hovered ? 1 : 0,
           transform: hovered ? 'translateY(0)' : 'translateY(4px)',
-          position: hovered ? 'relative' : 'absolute',
         }}
       >
         {hoverLabel}

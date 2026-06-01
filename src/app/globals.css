@@ -185,6 +185,91 @@
     pointer-events: none;
     z-index: 1;
   }
+
+  .input-tactical {
+    width: 100%;
+    background: rgba(8, 8, 10, 0.8);
+    border: 1px solid var(--c-dim);
+    padding: 0.75rem 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--c-fog);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    resize: none;
+  }
+
+  .input-tactical:focus {
+    border-color: var(--c-crimson);
+    background: rgba(139, 26, 26, 0.04);
+    box-shadow: 0 0 0 1px rgba(139, 26, 26, 0.2);
+  }
+
+  .input-tactical::placeholder {
+    color: var(--c-mist);
+  }
+
+  .input-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--c-dim);
+    letter-spacing: 0.16em;
+    display: block;
+    margin-bottom: 6px;
+    transition: color 0.2s;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--c-dim);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .contact-link:hover {
+    border-color: var(--c-crimson);
+    background: rgba(139, 26, 26, 0.06);
+  }
+
+  .contact-link:hover .contact-link-label {
+    color: var(--c-crimson-lit);
+  }
+
+  .contact-link:hover .contact-link-value {
+    color: var(--c-ghost);
+  }
+
+  .contact-link:hover .contact-link-arrow {
+    opacity: 1;
+  }
+
+  .contact-link-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--c-dim);
+    letter-spacing: 0.16em;
+    min-width: 70px;
+    transition: color 0.2s;
+  }
+
+  .contact-link-value {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--c-fog);
+    transition: color 0.2s;
+  }
+
+  .contact-link-arrow {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--c-crimson-lit);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
 }
 
 @keyframes flicker {

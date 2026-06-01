@@ -26,7 +26,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Terminal block */}
         <div className="mb-8 p-4" style={{ border: '1px solid var(--c-dim)', background: 'rgba(8,8,10,0.5)' }}>
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.12em', marginBottom: '4px' }}>
             WAYNE SYSTEMS TERMINAL
@@ -39,7 +38,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <p style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.12em' }}>
             © {year} {IDENTITY.name.toUpperCase()} — ALL SYSTEMS CLASSIFIED
