@@ -2,26 +2,27 @@
 
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import { IDENTITY } from "@/lib/constants"
 
 const FIELDS = [
   { label: "DESIGNATION", value: IDENTITY.name },
-  { label: "ROLE", value: IDENTITY.role },
-  { label: "LOCATION", value: IDENTITY.location },
-  { label: "STATUS", value: IDENTITY.availability },
+  { label: "ROLE",        value: IDENTITY.role },
+  { label: "LOCATION",    value: IDENTITY.location },
+  { label: "STATUS",      value: IDENTITY.availability },
 ]
 
 const LINKS = [
-  { label: "GITHUB", url: IDENTITY.github },
+  { label: "GITHUB",   url: IDENTITY.github },
   { label: "LINKEDIN", url: IDENTITY.linkedin },
-  { label: "TWITTER", url: IDENTITY.twitter },
+  { label: "TWITTER",  url: IDENTITY.twitter },
 ]
 
 const METRICS = [
   { value: "134 req/s", label: "Peak throughput" },
-  { value: "359ms", label: "p95 latency" },
-  { value: "Zero", label: "Errors under load" },
-  { value: "3", label: "Production systems" },
+  { value: "359ms",     label: "p95 latency" },
+  { value: "Zero",      label: "Errors under load" },
+  { value: "3",         label: "Production systems" },
 ]
 
 function FadeItem({ children, delay, revealed }: { children: React.ReactNode; delay: number; revealed: boolean }) {
@@ -45,7 +46,6 @@ export default function AboutSection() {
   useEffect(() => {
     const el = sentinelRef.current
     if (!el) return
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -55,7 +55,6 @@ export default function AboutSection() {
       },
       { threshold: 1.0 }
     )
-
     observer.observe(el)
     return () => observer.disconnect()
   }, [])
@@ -68,24 +67,39 @@ export default function AboutSection() {
         <FadeItem delay={0} revealed={revealed}>
           <div className="flex items-center gap-4 mb-16">
             <span className="rule-crimson" />
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-ash)", border: "1px solid var(--c-dim)", padding: "0.25rem 0.625rem" }}>01 — DOSSIER</span>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-ash)", border: "1px solid var(--c-dim)", padding: "0.25rem 0.625rem" }}>
+              01 — DOSSIER
+            </span>
             <span className="rule-crimson" />
           </div>
         </FadeItem>
 
-        {/* Sentinel — small invisible div that triggers when fully in view */}
         <div ref={sentinelRef} style={{ height: '1px', width: '100%', marginBottom: '-1px' }} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+          {/* Left */}
           <div>
             <FadeItem delay={0.1} revealed={revealed}>
-              <div className="card-tactical p-8 mb-6" style={{ borderColor: "var(--c-dim)" }}>
+              {/* Dossier card with hover lift */}
+              <motion.div
+                className="card-tactical p-8 mb-6"
+                style={{ borderColor: "var(--c-dim)", cursor: 'default' }}
+                whileHover={{
+                  y: -4,
+                  boxShadow: '0 12px 40px rgba(0,0,0,0.4), 0 0 20px rgba(139,26,26,0.08)',
+                  borderColor: 'rgba(139,26,26,0.3)',
+                }}
+                transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              >
                 <div className="flex items-center justify-between mb-6 pb-4" style={{ borderBottom: "1px solid var(--c-dim)" }}>
-                  <p style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-crimson-lit)", letterSpacing: "0.18em" }}>CLASSIFIED — LEVEL 5</p>
+                  <p style={{ fontFamily: "var(--font-mono)", fontSize: "var(--fs-xs)", color: "var(--c-crimson-lit)", letterSpacing: "0.18em" }}>
+                    CLASSIFIED — LEVEL 5
+                  </p>
                   <div className="w-2 h-2 rounded-full animate-blink" style={{ background: "var(--c-crimson-lit)" }} />
                 </div>
                 <div className="flex gap-6 mb-6">
-                  <div style={{ position: 'relative', width: '90px', height: '110px', flexShrink: 0 }}>
+                  <div style={{ position: 'relative', width: '120px', height: '140px', flexShrink: 0 }}>
                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l z-10" style={{ borderColor: 'var(--c-crimson)' }} />
                     <div className="absolute top-0 right-0 w-3 h-3 border-t border-r z-10" style={{ borderColor: 'var(--c-crimson)' }} />
                     <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l z-10" style={{ borderColor: 'var(--c-crimson)' }} />
@@ -95,7 +109,7 @@ export default function AboutSection() {
                       alt="Akhilesh Singh"
                       fill
                       sizes="90px"
-                      style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(100%) contrast(1.15) brightness(0.65)' }}
+                      style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(80%) contrast(1.1) brightness(0.85)' }}
                     />
                     <div className="absolute inset-0 z-10 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)' }} />
                     <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'rgba(139,26,26,0.12)' }} />
@@ -116,23 +130,42 @@ export default function AboutSection() {
                   </div>
                 ))}
                 <div className="mt-4 pt-4 flex items-center justify-between" style={{ borderTop: "1px solid var(--c-dim)" }}>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-dim)", letterSpacing: "0.14em" }}>FILE ID: WS-2025-0042</span>
-                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-crimson)", letterSpacing: "0.2em", border: "1px solid var(--c-crimson)", padding: "2px 6px", opacity: 0.7 }}>CLASSIFIED</span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-dim)", letterSpacing: "0.14em" }}>
+                    FILE ID: WS-2025-0042
+                  </span>
+                  <span style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-crimson)", letterSpacing: "0.2em", border: "1px solid var(--c-crimson)", padding: "2px 6px", opacity: 0.7 }}>
+                    CLASSIFIED
+                  </span>
                 </div>
-              </div>
+              </motion.div>
             </FadeItem>
 
             <FadeItem delay={0.3} revealed={revealed}>
               <div className="flex flex-wrap gap-3">
                 {LINKS.map(({ label, url }) => (
-                  <a key={label} href={url} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-ash)", border: "1px solid var(--c-dim)", padding: "0.4rem 0.8rem", textDecoration: "none", display: "inline-block" }}>
+                  <motion.a
+                    key={label}
+                    href={url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-ash)", border: "1px solid var(--c-dim)", padding: "0.4rem 0.8rem", textDecoration: "none", display: "inline-block" }}
+                    whileHover={{
+                      color: 'var(--c-crimson-lit)',
+                      borderColor: 'var(--c-crimson)',
+                      y: -2,
+                      boxShadow: '0 4px 12px rgba(139,26,26,0.15)',
+                    }}
+                    whileTap={{ scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                  >
                     {label} →
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </FadeItem>
           </div>
 
+          {/* Right */}
           <div>
             <FadeItem delay={0.2} revealed={revealed}>
               <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
@@ -155,14 +188,29 @@ export default function AboutSection() {
             <div className="grid grid-cols-2 gap-4">
               {METRICS.map(({ value, label }, i) => (
                 <FadeItem key={label} delay={0.65 + i * 0.1} revealed={revealed}>
-                  <div className="p-4" style={{ border: "1px solid var(--c-dim)", background: "rgba(8,8,10,0.5)" }}>
-                    <div style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", color: "var(--c-ghost)", lineHeight: "1" }}>{value}</div>
-                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-dim)", marginTop: "4px" }}>{label.toUpperCase()}</div>
-                  </div>
+                  <motion.div
+                    className="p-4"
+                    style={{ border: "1px solid var(--c-dim)", background: "rgba(8,8,10,0.5)" }}
+                    whileHover={{
+                      y: -3,
+                      borderColor: 'rgba(139,26,26,0.4)',
+                      background: 'rgba(139,26,26,0.04)',
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.3), 0 0 12px rgba(139,26,26,0.06)',
+                    }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <div style={{ fontFamily: "var(--font-display)", fontSize: "1.8rem", color: "var(--c-ghost)", lineHeight: "1" }}>
+                      {value}
+                    </div>
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "9px", color: "var(--c-dim)", marginTop: "4px" }}>
+                      {label.toUpperCase()}
+                    </div>
+                  </motion.div>
                 </FadeItem>
               ))}
             </div>
           </div>
+
         </div>
       </div>
     </section>
