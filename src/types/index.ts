@@ -15,6 +15,7 @@ export interface Project {
     status:      'active' | 'archived' | 'classified'
     url?:        string
     github?:     string
+    image?:      string
     metrics?:    ProjectMetrics
 }
   

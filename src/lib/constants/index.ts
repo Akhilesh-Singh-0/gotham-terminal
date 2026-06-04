@@ -38,8 +38,9 @@ export const PROJECTS: Project[] = [
     codename: 'OPERATION NIGHTWATCH',
     description: 'AI API cost enforcement reverse proxy. Atomic billing via Redis Lua scripts eliminates race conditions under concurrent load. Load tested at 134 req/s with zero errors.',
     tags: ['Node.js', 'TypeScript', 'PostgreSQL', 'Redis', 'BullMQ', 'WebSockets', 'Next.js 15', 'Turborepo'],
-    year: '2025',
+    year: '2026',
     status: 'active',
+    image: '/project-guardrail.png',
     url: 'https://guardrail.live',
     github: 'https://github.com/Akhilesh-Singh-0',
     metrics: {
@@ -55,8 +56,9 @@ export const PROJECTS: Project[] = [
     codename: 'OPERATION BLACKGATE',
     description: 'Real-time multi-tenant project management platform. 4-layer REST API, multi-tenant RBAC, Redis Pub/Sub decoupled WebSocket architecture. Load tested at 150 req/s, p95 latency 359ms.',
     tags: ['Node.js', 'TypeScript', 'PostgreSQL', 'Redis', 'BullMQ', 'WebSockets', 'Next.js 15', 'Prisma'],
-    year: '2025',
+    year: '2026',
     status: 'active',
+    image: '/project-flowspace.png',
     url: 'https://flowspace.live',
     github: 'https://github.com/Akhilesh-Singh-0',
     metrics: {
@@ -72,7 +74,8 @@ export const PROJECTS: Project[] = [
     codename: 'OPERATION ARCHIVE',
     description: 'Personal knowledge management platform. Save and organize YouTube videos, tweets, articles and links. Share entire collections publicly. Full-stack TypeScript with JWT authentication.',
     tags: ['Node.js', 'TypeScript', 'PostgreSQL', 'Prisma', 'Next.js', 'JWT'],
-    year: '2025',
+    year: '2026',
+    image: '/project-luminary.png',
     status: 'active',
     github: 'https://github.com/Akhilesh-Singh-0',
     metrics: {
