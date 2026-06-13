@@ -40,6 +40,9 @@
   --z-nav: 30;
   --z-intro: 40;
   --z-cursor: 50;
+  --border-line: var(--c-dim);
+  --radius-card: 8px;
+  --radius-sm: 4px;
 }
 
 @layer base {
@@ -80,6 +83,32 @@
 }
 
 @layer components {
+
+  .screen-line-top {
+    border-top: 1px solid var(--border-line);
+  }
+
+  .screen-line-bottom {
+    border-bottom: 1px solid var(--border-line);
+  }
+
+  .panel-border {
+    border-left: 1px solid var(--border-line);
+    border-right: 1px solid var(--border-line);
+  }
+
+  .hatched-bg {
+    background-image: repeating-linear-gradient(
+      315deg,
+      var(--c-dim) 0,
+      var(--c-dim) 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 8px 8px;
+    opacity: 0.3;
+  }
+  
   .heading-display {
     font-family: var(--font-display);
     text-transform: uppercase;
@@ -190,6 +219,7 @@
     width: 100%;
     background: rgba(8, 8, 10, 0.8);
     border: 1px solid var(--c-dim);
+    border-radius: var(--radius-sm);
     padding: 0.75rem 1rem;
     font-family: var(--font-mono);
     font-size: var(--fs-xs);
@@ -225,6 +255,7 @@
     gap: 1rem;
     padding: 1rem;
     border: 1px solid var(--c-dim);
+    border-radius: var(--radius-card);
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
   }
