@@ -2,20 +2,36 @@ import type { NavItem, Project, Skill } from '@/types'
 
 export const IDENTITY = {
   name: 'Akhilesh Singh',
+
+  role: 'Backend Engineer',
+
+  focus: 'Exploring Applied AI',
+
   handle: '@singh_akhil2272',
-  role: 'Backend & Systems Engineer',
+
   location: 'Gwalior, India',
+
   email: 'singhakhilesh19468@gmail.com',
+
   github: 'https://github.com/Akhilesh-Singh-0',
   linkedin: 'https://linkedin.com/in/akhilesh-singh-dev',
   twitter: 'https://x.com/singh_akhil2272',
-  headline: 'Engineering scalable real-time systems and backend infrastructure.',
-  subheadline: 'I build production-focused backend systems with Node.js, TypeScript, PostgreSQL, Redis, BullMQ, and WebSockets — focused on scalability, concurrency, reliability, and clean architecture.',
-  tagline: 'Built for scale, latency, and reliability.',
-  shortIntro: 'My work focuses on distributed systems, async processing, real-time architectures, and API infrastructure. I enjoy solving engineering problems around concurrency, performance, fault tolerance, and system design.',
+
+  headline: 'Building reliable backend systems and AI-powered products.',
+
+  subheadline:
+  'I build backend systems with Node.js, TypeScript, PostgreSQL, Redis, BullMQ, and WebSockets. Currently expanding into Applied AI while continuing to deepen my expertise in distributed systems, scalability, and infrastructure.',
+
+  tagline: 'Backend engineering. Real-time systems. Applied AI.',
+
+  shortIntro:
+    'My work focuses on distributed systems, async processing, real-time architectures, and developer infrastructure. I enjoy solving engineering problems around concurrency, performance, reliability, and system design while exploring Applied AI.',
+
   availability: 'Open to opportunities',
+
   ctaPrimary: 'View Projects',
   ctaSecondary: 'Contact Me',
+
   stats: [
     { value: '134/s', label: 'Peak req/s — Guardrail' },
     { value: '150/s', label: 'Peak req/s — FlowSpace' },
