@@ -113,4 +113,9 @@ export const SKILLS: Skill[] = [
   { name: 'Docker', category: 'infrastructure', level: 78 },
   { name: 'Turborepo', category: 'infrastructure', level: 75 },
   { name: 'Vercel', category: 'infrastructure', level: 80 },
+  { name: 'Python', category: 'ai', level: 0 },
+  { name: 'OpenAI SDK', category: 'ai', level: 0 },
+  { name: 'RAG', category: 'ai', level: 0 },
+  { name: 'AI Agents', category: 'ai', level: 0 },
+  { name: 'Vector Databases', category: 'ai', level: 0 },
 ]

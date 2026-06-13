@@ -187,17 +187,23 @@ export default function HeroSection() {
         </div>
         <div className="overflow-hidden mb-3">
           <h1
-            className={cn('heading-display transition-all duration-1000 delay-150', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full')}
-            style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'var(--c-ghost)' }}
+            className={cn(
+            'heading-display transition-all duration-1000 delay-150',
+            revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'
+          )}
+            style={{
+              fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
+              color: 'var(--c-ghost)',
+          }}
           >
-            ENGINEERING
+            I BUILD
           </h1>
         </div>
         <div className="overflow-hidden mb-3">
           <h1
             className={cn('heading-display transition-all duration-1000 delay-200', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full')}
             style={{
-              fontSize: 'clamp(3rem, 8vw, 7rem)',
+              fontSize: 'clamp(2.5rem, 6vw, 5.5rem)',
               background: 'linear-gradient(135deg, var(--c-crimson) 0%, var(--c-crimson-lit) 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -210,9 +216,9 @@ export default function HeroSection() {
         <div className="overflow-hidden mb-10">
           <h1
             className={cn('heading-display transition-all duration-1000 delay-300', revealed ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full')}
-            style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', color: 'var(--c-ghost)' }}
+            style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)', color: 'var(--c-ghost)' }}
           >
-            THAT SURVIVE.
+            THAT HOLD UP.
           </h1>
         </div>
         <p

@@ -11,10 +11,10 @@ import FadeItem from '@/components/ui/FadeItem'
 import GlowCard from '@/components/ui/GlowCard'
 
 const FIELDS = [
-  { label: 'DESIGNATION', value: IDENTITY.name },
-  { label: 'ROLE', value: IDENTITY.role },
+  { label: 'NAME', value: IDENTITY.name },
+  { label: 'FOCUS', value: 'Backend Engineering • Applied AI' },
   { label: 'LOCATION', value: IDENTITY.location },
-  { label: 'STATUS', value: IDENTITY.availability },
+  { label: 'CURRENTLY', value: 'Building systems and learning Applied AI' },
 ]
 
 const LINKS = [
@@ -37,7 +37,7 @@ export default function AboutSection() {
     <Panel id="about" background="charcoal">
       <div className="overlay-scan absolute inset-0 pointer-events-none" />
       <PanelContent>
-        <SectionHeader index="01" label="DOSSIER" visible={visible} />
+      <SectionHeader index="01" label="ABOUT" visible={visible} />
 
         <div ref={ref} style={{ height: '1px', width: '100%', marginBottom: '-1px' }} />
 
@@ -48,13 +48,13 @@ export default function AboutSection() {
               <GlowCard hover className="card-tactical p-8 mb-6">
                 <div className="flex items-center justify-between mb-6 pb-4" style={{ borderBottom: '1px solid var(--border-line)' }}>
                   <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--fs-xs)', color: 'var(--c-crimson-lit)', letterSpacing: '0.18em' }}>
-                    CLASSIFIED — LEVEL 5
+                  ABOUT ME
                   </p>
                   <div className="w-2 h-2 rounded-full animate-blink" style={{ background: 'var(--c-crimson-lit)' }} />
                 </div>
 
                 <div className="flex gap-6 mb-6">
-                  <div style={{ position: 'relative', width: '120px', height: '140px', flexShrink: 0 }}>
+                  <div style={{ position: 'relative', width: '180px', height: '220px', flexShrink: 0 }}>
                     <div className="absolute top-0 left-0 w-3 h-3 border-t border-l z-10" style={{ borderColor: 'var(--c-crimson)' }} />
                     <div className="absolute top-0 right-0 w-3 h-3 border-t border-r z-10" style={{ borderColor: 'var(--c-crimson)' }} />
                     <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l z-10" style={{ borderColor: 'var(--c-crimson)' }} />
@@ -64,10 +64,10 @@ export default function AboutSection() {
                       alt="Akhilesh Singh"
                       fill
                       sizes="120px"
-                      style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'grayscale(80%) contrast(1.1) brightness(0.85)' }}
+                      style={{ objectFit: 'cover', objectPosition: 'center top' }}
                     />
                     <div className="absolute inset-0 z-10 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px)' }} />
-                    <div className="absolute inset-0 z-10 pointer-events-none" style={{ background: 'rgba(139,26,26,0.12)' }} />
+                    <div className="absolute inset-0 z-10 pointer-events-none" />
                   </div>
                   <div className="flex flex-col justify-center gap-3">
                     {FIELDS.slice(0, 2).map(({ label, value }) => (
@@ -88,10 +88,10 @@ export default function AboutSection() {
 
                 <div className="mt-4 pt-4 flex items-center justify-between" style={{ borderTop: '1px solid var(--border-line)' }}>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-dim)', letterSpacing: '0.14em' }}>
-                    FILE ID: WS-2025-0042
+                  BUILDING SYSTEMS SINCE 2024
                   </span>
                   <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', color: 'var(--c-crimson)', letterSpacing: '0.2em', border: '1px solid var(--c-crimson)', padding: '2px 6px', opacity: 0.7 }}>
-                    CLASSIFIED
+                  AVAILABLE
                   </span>
                 </div>
               </GlowCard>
@@ -120,19 +120,21 @@ export default function AboutSection() {
           <div>
             <FadeItem delay={0.2} visible={visible}>
               <h2 className="heading-display mb-6" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--c-ghost)' }}>
-                THE ENGINEER BEHIND THE SYSTEMS.
+              MITS GWALIOR • INDIA
               </h2>
             </FadeItem>
 
             <FadeItem delay={0.35} visible={visible}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-silver)', lineHeight: '1.8', marginBottom: '1.5rem' }}>
-                I started with web development but became more interested in what happened after a request left the browser. That curiosity led me into distributed systems, queues, caching, real-time communication, and backend architecture.
+              I build backend systems focused on reliability, scalability, and real-world performance. My interests lie in distributed systems, queues, caching, databases, real-time communication, and the engineering tradeoffs that make software dependable under load.
+
+              Over the last year, I've built production-focused projects involving PostgreSQL, Redis, BullMQ, WebSockets, and TypeScript. While backend engineering remains my foundation, I am now expanding into Applied AI and exploring how intelligent systems can be integrated into practical products.
               </p>
             </FadeItem>
 
             <FadeItem delay={0.5} visible={visible}>
               <p style={{ fontFamily: 'var(--font-body)', fontSize: 'var(--fs-md)', color: 'var(--c-ash)', lineHeight: '1.8', marginBottom: '2rem' }}>
-                Currently pursuing B.Tech in Mechanical Engineering at MITS Gwalior building production grade backend systems on the side. Meta Back-End Developer certified. PostgreSQL specialist.
+              Currently pursuing B.Tech at MITS Gwalior while building production-focused backend projects. Alongside backend engineering, I am actively moving toward Applied AI and exploring how intelligent systems can be integrated into real-world products.
               </p>
             </FadeItem>
 
